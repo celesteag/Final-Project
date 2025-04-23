@@ -1,1 +1,113 @@
-/* You can add global styles to this file, and also import other style files */
+.container {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #007BFF;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+span {
+    font-size: 16px;
+    color: #333;
+}
+
+li button {
+    background-color: #dc3545;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+li button:first-of-type {
+    background-color: #28a745;
+}
+
+.navbar {
+    top:0;
+    display: flex;
+    justify-content: center; 
+    gap: 20px; 
+    background-color: #f0f4f8; 
+    padding: 10px 20px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar .button {
+    text-decoration: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333; 
+    background-color: #ffffff; 
+    border: 2px solid #e0e0e0; 
+    transition: all 0.3s ease-in-out; 
+}
+
+
+.navbar .button:hover {
+    background-color: #00a2ff; 
+    color: #fff; 
+    border-color: #007bff; 
+}
+
+.navbar .activebutton {
+    background-color: #4CAF50; 
+    color: white; 
+    border-color: #4CAF50; 
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ddd; 
+    margin: 20px 0;
+}

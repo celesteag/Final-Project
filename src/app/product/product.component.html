@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>Lista Productos</h2>
+    <br>
+    <h3>Stock</h3>
+
+    <section>
+        <input #nameInput value={{this.name()}} (input)="name.set(nameInput.value)" placeholder="Producto" />
+        <input #quantityInput   value={{this.quantity()}} (input)="quantity.set(+quantityInput.value)" type="number"
+            placeholder="Cantidad" />
+    </section>
+
+
+    <button
+        (click)="addProduct()">{{this.editando()
+        ? 'Actualizar' : 'Añadir'}}</button>
+
+
+    <ul>
+        @for (product of products().slice().reverse(); track product._id) {
+        <li [hidden]="products().length === 0">
+            <div>
+                
+
+                <span>{{product.name}} - {{product.quantity}}</span>
+                <button (click)="updateProduct(product)">Editar</button>
+                <button (click)="deleteProduct(product._id)">Eliminar</button>
+                
+            </div>
+            
+        </li>
+        }
+    </ul>
+
+</div>
+
