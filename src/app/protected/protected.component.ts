@@ -26,6 +26,8 @@ export class ProtectedComponent {
     this.authService.protected().subscribe((r) => {
       alert(this.texto.set(r.texto()));
     });
-    this.router.navigate(['/vehiculos'])
+    this.router.navigate(['/products'])
   }
 }
+
+
