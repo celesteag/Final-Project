@@ -4,32 +4,31 @@
     <h3>Stock</h3>
     <br>
     <section>
-        <input #nameInput value={{this.name()}} (input)="name.set(nameInput.value)" placeholder="Producto" />
-        <input #quantityInput   value={{this.quantity()}} (input)="quantity.set(+quantityInput.value)" type="number"
-            placeholder="Cantidad" />
+        <input type="text" class="form-control" #nameInput value={{this.name()}} (input)="name.set(nameInput.value)" placeholder="Product" />
+        <input type="number" class="form-control" #quantityInput   value={{this.quantity()}} (input)="quantity.set(+quantityInput.value)" type="number"
+            placeholder="Quantity" />
     </section>
 
 
-    <button
+    <button class="btn btn-primary" 
         (click)="addProduct()">{{this.editando()
         ? 'Actualizar' : 'Añadir'}}</button>
 
+    <hr>
 
-    <ul>
+    <ul class="list-group">
         @for (product of products().slice().reverse(); track product._id) {
-        <li [hidden]="products().length === 0">
-            <div>
-                
-
-                <span>{{product.name}} - {{product.quantity}}</span>
-                <button (click)="updateProduct(product)">Editar</button>
-                <button (click)="deleteProduct(product._id)">Eliminar</button>
-                
+          <li class="list-group-item d-flex justify-content-between align-items-center" [hidden]="products().length === 0">
+            {{ product.name }}
+            <span class="badge badge-primary badge-pill">{{ product.quantity }}</span>
+            <div class="mt-2">
+              <button class="btn btn-success btn-sm" (click)="updateProduct(product)">Editar</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteProduct(product._id)">Eliminar</button>
             </div>
-            
-        </li>
+          </li>
         }
-    </ul>
+      </ul>
+      
 
 </div>
 

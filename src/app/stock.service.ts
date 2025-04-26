@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 interface Product {
@@ -21,6 +21,14 @@ export class StockService {
     this.http = http;
   }
 
+  private getHeaders() {
+    const token: string = localStorage.getItem('token') ?? "";
+    return new HttpHeaders({
+        "Authorization": "Bearer " + token,
+        'Content-Type': 'application/json' 
+    }); 
+}
+
   setEstado(newEstado: string){
       this.estado = newEstado;
   }
@@ -34,15 +42,15 @@ export class StockService {
   }
 
   addProduct(product: Product): Observable<any>{
-      return this.http.post<Product>(this.apiUrl, product);
+      return this.http.post<Product>(this.apiUrl, product, {headers: this.getHeaders()});
   }
 
   updateProduct(product: Product, id: string): Observable<any>{
-      return this.http.put<Product>(`${this.apiUrl}/${id}`, product);
+      return this.http.put<Product>(`${this.apiUrl}/${id}`, product, {headers: this.getHeaders()});
   }
 
   deleteProduct(id: string): Observable<any>{
-      return this.http.delete(`${this.apiUrl}/${id}`);
+      return this.http.delete(`${this.apiUrl}/${id}`, {headers: this.getHeaders()});
   }
 
 }

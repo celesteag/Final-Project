@@ -1,12 +1,12 @@
 <div class="container">
     <h2>Registro de usuarios</h2>
-
+    <br>
     <section>
-        <input #emailInput value={{this.email()}} (input)="email.set(emailInput.value)" placeholder="Email" />
-        <input #passwordInput value={{this.password()}} (input)="password.set(passwordInput.value)" placeholder="Contraseña" />
+        <input type="text" class="form-control" #emailInput value={{this.email()}} (input)="email.set(emailInput.value)" placeholder="example@example.com" />
+        <input type="text" class="form-control" #passwordInput value={{this.password()}} (input)="password.set(passwordInput.value)" placeholder="Password" />
     </section>
 
-    <button (click)="register()">Sign In</button>
+    <button class="btn btn-primary" (click)="register()">Sign In</button>
 
     <div [hidden]="!message" class="alert alert-danger" class="message-box">{{ message }}</div>
 </div>
