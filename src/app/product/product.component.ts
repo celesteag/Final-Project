@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { SocketService } from '../socket.service';
 import { StockService } from '../stock.service';
+import { timer } from 'rxjs';
 
 
 interface Product {
@@ -29,7 +30,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-  
+    
     this.socketService.onProductsList().subscribe((products) => {
       this.products.set(products);
     });
@@ -58,13 +59,16 @@ export class ProductComponent implements OnInit {
     } else {
       if(this.quantity() > 0){
         this.stockService.addProduct(product).subscribe(()=> {
-          this.getProducts();
-          this.resetForm();
+          timer(500) 
+          .subscribe(() => {
+            this.getProducts();
+            this.resetForm();
+          }); 
         }, (error) => {
           alert("Error al añadir producto: " + error.error.message);
         });
       } else {
-        alert("Importe debe ser mayor que 0")
+        alert("Cantidad debe ser mayor que 0")
       }
     }
   }

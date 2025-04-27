@@ -41,11 +41,11 @@ button {
     margin-bottom: 40px;
 }
 .nav-link {
-    color: #4b87c6; 
+    color: rgb(240, 240, 241); 
 }
   
 .nav-link:hover {
-    color:rgb(240, 240, 241)
+    color:#4b87c6
 }
 
 
