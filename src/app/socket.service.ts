@@ -2,10 +2,10 @@ import { Injectable, signal} from '@angular/core';
 import { Observable } from 'rxjs';
 import {io, Socket} from 'socket.io-client'; 
 
-interface Product {
+interface Person {
   _id?: string;
   name: string;
-  quantity: number;
+  age: number;
 }
 
 @Injectable({
@@ -19,14 +19,14 @@ export class SocketService {
     this.socket = io(this.uri);
   }
 
-  getProducts() {
-    this.socket.emit('getProducts');
+  getPersons() {
+    this.socket.emit('getPersons');
   }
 
-  onProductsList(): Observable<any[]> {
+  onPersonsList(): Observable<any[]> {
     return new Observable((observer) => {
-      this.socket.on('productsList', (products: any[]) => {
-        observer.next(products);
+      this.socket.on('personsList', (persons: any[]) => {
+        observer.next(persons);
       })
     })
   }
