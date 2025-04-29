@@ -1,6 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { SocketService } from '../socket.service';
+<<<<<<< HEAD
 import { ListService } from '../list.service';
+=======
+import { ListService} from '../list.service';
+>>>>>>> bf9d9e54c742a31f5bfc3fda9cceea002f5c1109
 //import { timer } from 'rxjs';
 
 
@@ -20,7 +24,6 @@ export class PersonComponent implements OnInit {
   constructor(private listService: ListService) { }
   private socketService: SocketService = inject(SocketService);
   persons = signal<Person[]>([]);
-
   title = "Miembros equipo";
   name = signal('');
   age = signal(0);
@@ -39,6 +42,7 @@ export class PersonComponent implements OnInit {
       this.persons.set(persons);
     });
   }
+
   /*
   getPersons() {
     this.listService.getPersons().subscribe((data) => {
@@ -46,6 +50,7 @@ export class PersonComponent implements OnInit {
     })
   }
 */
+
   addPerson() {
     const person = {
       name: this.name(),
@@ -64,10 +69,12 @@ export class PersonComponent implements OnInit {
       this.editingId.set("");
       this.editando.set(false);
     } else {
+
       if (this.age() > 0) {
         this.listService.addPerson(person).subscribe(() => {
           this.getPersons();
           this.resetForm();
+
         }, (error) => {
           alert("Error al añadir producto: " + error.error.message);
         });
@@ -77,15 +84,17 @@ export class PersonComponent implements OnInit {
     }
   }
 
-  updatePerson(person: Person) {
+
+  updatePerson(person: Person){
     this.editando.set(true);
     this.name.set(person.name);
     this.age.set(person.age);
-    this.editingId.set(person._id ? String(person._id) : "");
+    this.editingId.set(person._id ? String (person._id) : "");
   }
 
 
-  deletePerson(id: any) {
+  deletePerson(id: any){
+
     this.listService.deletePerson(id).subscribe(() => {
       this.getPersons();
     })
