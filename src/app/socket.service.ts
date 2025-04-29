@@ -2,10 +2,10 @@ import { Injectable, signal} from '@angular/core';
 import { Observable } from 'rxjs';
 import {io, Socket} from 'socket.io-client'; 
 
-interface Product {
+interface Person {
   _id?: string;
   name: string;
-  quantity: number;
+  age: number;
 }
 
 @Injectable({
@@ -16,18 +16,33 @@ export class SocketService {
   private readonly uri: string = 'http://localhost:3000';
 
   constructor() { 
-    this.socket = io(this.uri);
+    const token = localStorage.getItem('token');
+
+    this.socket = io(this.uri, {
+      auth: {
+        token: token,
+      },
+      transports: ['websocket'], //asegura conexión limpia
+    });
   }
 
-  getProducts() {
-    this.socket.emit('getProducts');
+  getPersons() {
+    this.socket.emit('getPersons');
   }
 
-  onProductsList(): Observable<any[]> {
+  onPersonsList(): Observable<any[]> {
     return new Observable((observer) => {
-      this.socket.on('productsList', (products: any[]) => {
-        observer.next(products);
+      this.socket.on('personsList', (persons: any[]) => {
+        observer.next(persons);
       })
     })
+  }
+
+  onPersonsError(): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on('personsError', (error: any) => {
+        observer.next(error);
+      });
+    });
   }
 }

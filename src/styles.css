@@ -13,7 +13,7 @@ h2 {
 }
 
 h3{
-    color: #000000;
+    color: white;
 }
 
 input {
@@ -51,6 +51,7 @@ button {
 
 li.list-group-item {
     background: white;
+    color: white;
     margin: 7px 0;
     padding: 5px;
     border-radius: 5px;

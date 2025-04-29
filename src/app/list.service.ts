@@ -2,18 +2,18 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-interface Product {
+interface Person {
   _id?: number;
   name: string;
-  quantity: number;
+  age: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class StockService {
+export class ListService {
 
-  private apiUrl: string = "http://localhost:3000/products";
+  private apiUrl: string = "http://localhost:3000/persons";
     private http: HttpClient;
     private estado: string = 'A';
 
@@ -37,19 +37,19 @@ export class StockService {
       return this.estado;
   }
 
-  getProducts(): Observable<Product[]> {
-      return this.http.get<Product[]>(this.apiUrl);
+  getPersons(): Observable<Person[]> {
+      return this.http.get<Person[]>(this.apiUrl);
   }
 
-  addProduct(product: Product): Observable<any>{
-      return this.http.post<Product>(this.apiUrl, product, {headers: this.getHeaders()});
+  addPerson(person: Person): Observable<any>{
+      return this.http.post<Person>(this.apiUrl, person, {headers: this.getHeaders()});
   }
 
-  updateProduct(product: Product, id: string): Observable<any>{
-      return this.http.put<Product>(`${this.apiUrl}/${id}`, product, {headers: this.getHeaders()});
+  updatePerson(person: Person, id: string): Observable<any>{
+      return this.http.put<Person>(`${this.apiUrl}/${id}`, person, {headers: this.getHeaders()});
   }
 
-  deleteProduct(id: string): Observable<any>{
+  deletePerson(id: string): Observable<any>{
       return this.http.delete(`${this.apiUrl}/${id}`, {headers: this.getHeaders()});
   }
 

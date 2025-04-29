@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { ProductComponent } from '../product/product.component';
+import { PersonComponent } from '../person/person.component';
 import { AuthService } from '../auth.service';
 import { Router, RouterModule } from '@angular/router';
 
@@ -26,7 +26,7 @@ export class ProtectedComponent {
     this.authService.protected().subscribe((r) => {
       alert(this.texto.set(r.texto()));
     });
-    this.router.navigate(['/products'])
+    this.router.navigate(['/persons'])
   }
 }
 
